@@ -100,17 +100,48 @@ public class EvaluationService {
 			this.sideThree = sideThree;
 		}
 
+		/*
+		 * public boolean isEquilateral() { Triangle s1 = new Triangle(); Triangle s2 =
+		 * new Triangle(); Triangle s3 = new Triangle();
+		 * 
+		 * s1.sideOne = getSideOne(); s2.sideTwo = getSideTwo(); s3.sideThree =
+		 * getSideThree();
+		 * 
+		 * if((s1).equals(s2) & (s2).equals(s3) & (s3).equals(s1) ) { return true; }
+		 * else { return false; } }
+		 */
+		
 		public boolean isEquilateral() {
-			double s1 = getSideOne();
-			double s2 = getSideTwo();
-			double s3 = getSideThree();
+			Triangle s1 = new Triangle(sideOne, sideTwo, sideThree);
+			Triangle s2 = new Triangle(sideOne, sideTwo, sideThree);
+			Triangle s3 = new Triangle(sideOne, sideTwo, sideThree);
 			
-			if(s1 == s2 & s2 == s3 & s3 == s1) {
-				return true;
+			s1.sideOne =getSideOne();
+			s2.sideTwo =getSideTwo();
+			s3.sideThree =getSideThree();
+			
+			boolean results; 
+				
+			if ((s1.sideOne) == (s2.sideTwo) 
+				&& (s2.sideTwo) == (s3.sideThree) 
+					&& (s3.sideThree) == (s1.sideOne) ) 
+			{
+				//
+				s2.sideOne = s1.sideOne;
+				s3.sideOne = s1.sideOne;
+				//
+				s1.sideTwo = s2.sideTwo;
+				s3.sideTwo = s2.sideTwo;
+				//
+				s1.sideThree = s3.sideThree;
+				s2.sideThree = s3.sideThree;
+				
+				results = true;
 			}
 			else {
-				return false;	
+				results = false;
 			}
+			return results;
 		}
 
 		public boolean isIsosceles() {
