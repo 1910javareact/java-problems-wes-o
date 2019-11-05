@@ -101,20 +101,46 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			double s1 = getSideOne();
+			double s2 = getSideTwo();
+			double s3 = getSideThree();
+			
+			if(s1 == s2 & s2 == s3 & s3 == s1) {
+				return true;
+			}
+			else {
+				return false;	
+			}
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			double s1 = getSideOne();
+			double s2 = getSideTwo();
+			double s3 = getSideThree();
+			
+			if((s1 == s2 & s2 != s3 & s1 != s3) |
+					(s1 == s3 & s2 != s3 & s1 != s2) |
+						(s2 != s1 & s2 == s3 & s1 != s3 )
+				) { 
+				return true; 
+				}
+				else {
+					return false;	
+				}
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			double s1 = getSideOne();
+			double s2 = getSideTwo();
+			double s3 = getSideThree();
+			
+			if(s1 != s2 & s2 != s3 & s3 != s1) {
+				return true;
+			}
+			else {
+				return false;	
+			}
 		}
-
 	}
 
 	/**
