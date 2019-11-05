@@ -34,9 +34,21 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
+	
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+			
+		String str = phrase;
+			
+		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*) 
+		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
+			
+	    String words[] = str.split(delimiterValues); 
+	    String upper = "";
+	        
+	    	for(String word : words) { 
+	            upper = upper +(Character.toUpperCase(word.charAt(0)) + "");  
+	        } 
+			return upper;
 	}
 
 	/**
