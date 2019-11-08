@@ -14,9 +14,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		/* Check validity
-		 * if(string == null || string.equals(null)) { return string; }
-		 */
 		String input = string;
 		String reversed = "";
 		 
