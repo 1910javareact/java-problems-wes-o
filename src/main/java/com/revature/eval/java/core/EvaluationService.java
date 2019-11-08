@@ -31,9 +31,21 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
+	
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+			
+		String str = phrase;
+			
+		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*) 
+		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
+			
+	    String words[] = str.split(delimiterValues); 
+	    String upper = "";
+	        
+	    	for(String word : words) { 
+	            upper = upper +(Character.toUpperCase(word.charAt(0)) + "");  
+	        } 
+			return upper;
 	}
 
 	/**
@@ -85,21 +97,78 @@ public class EvaluationService {
 			this.sideThree = sideThree;
 		}
 
+		/*
+		 * public boolean isEquilateral() { Triangle s1 = new Triangle(); Triangle s2 =
+		 * new Triangle(); Triangle s3 = new Triangle();
+		 * 
+		 * s1.sideOne = getSideOne(); s2.sideTwo = getSideTwo(); s3.sideThree =
+		 * getSideThree();
+		 * 
+		 * if((s1).equals(s2) & (s2).equals(s3) & (s3).equals(s1) ) { return true; }
+		 * else { return false; } }
+		 */
+		
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			Triangle s1 = new Triangle(sideOne, sideTwo, sideThree);
+			Triangle s2 = new Triangle(sideOne, sideTwo, sideThree);
+			Triangle s3 = new Triangle(sideOne, sideTwo, sideThree);
+			
+			s1.sideOne =getSideOne();
+			s2.sideTwo =getSideTwo();
+			s3.sideThree =getSideThree();
+			
+			boolean results; 
+				
+			if ((s1.sideOne) == (s2.sideTwo) 
+				&& (s2.sideTwo) == (s3.sideThree) 
+					&& (s3.sideThree) == (s1.sideOne) ) 
+			{
+				//
+				s2.sideOne = s1.sideOne;
+				s3.sideOne = s1.sideOne;
+				//
+				s1.sideTwo = s2.sideTwo;
+				s3.sideTwo = s2.sideTwo;
+				//
+				s1.sideThree = s3.sideThree;
+				s2.sideThree = s3.sideThree;
+				
+				results = true;
+			}
+			else {
+				results = false;
+			}
+			return results;
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			double s1 = getSideOne();
+			double s2 = getSideTwo();
+			double s3 = getSideThree();
+			
+			if((s1 == s2 & s2 != s3 & s1 != s3) |
+					(s1 == s3 & s2 != s3 & s1 != s2) |
+						(s2 != s1 & s2 == s3 & s1 != s3 )
+				) { 
+				return true; 
+				}
+				else {
+					return false;	
+				}
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			double s1 = getSideOne();
+			double s2 = getSideTwo();
+			double s3 = getSideThree();
+			
+			if(s1 != s2 & s2 != s3 & s3 != s1) {
+				return true;
+			}
+			else {
+				return false;	
+			}
 		}
-
 	}
 
 	/**
