@@ -515,15 +515,38 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-	
-		
-		
-		
-		
-		
-		
-		return i;
+		if (i <= 2) {
+			throw new IllegalArgumentException();
+		}
+	int n = i;
+	int num = 1;
+	int c = 0;
+
+		while (c < n) {
+			num = num++;
+			for (int j = 2; j <= num; j++) {
+				if (num % j == 0) {
+					return j;
+				}
+			}
+			if (i == num) {
+				c = c++;
+			}
+		}
+	return i;
 	}
+	
+	/*
+	 * public Integer getNthPrime(int n, int searchUpperBound) { primes = new
+	 * ArrayList<Integer>(n); primes.add(2); mayPrimes = new LinkedList<Integer>();
+	 * for (int i = 0; i < searchUpperBound/2; i++) { mayPrimes.add(i * 2 + 3); }
+	 * while (primes.size() != n) { int prime = mayPrimes.remove(0); for (int i = 0;
+	 * i < searchUpperBound / prime; i++) { mayPrimes.remove(new Integer(prime *
+	 * i)); } primes.add(prime); if (prime * prime > searchUpperBound) {
+	 * primes.addAll(mayPrimes); break; } } if (primes.size() >= n) { return
+	 * primes.get(n - 1); } else { return null; } }
+	 */
+	
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
 	 * system created in the Middle East.
