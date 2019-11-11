@@ -336,8 +336,15 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			@SuppressWarnings("unchecked")
+			int middle = (( (List<T>) t).size()/2 );
+			int first = 0;
+			@SuppressWarnings("unchecked")
+			int last = ((List<T>) t).size();
+				for (int i = middle; i < last; i += i/2) {
+			   if( ( middle == (int) t));
+			}
+			return middle;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -393,8 +400,26 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		int num = input;
+		int rem;
+		int digits = 0, total = 0;
+		//int total = 0;
+		while (num > 0) { 
+			digits++;
+			num = num / 10;
+		}
+		num = input; // reset number
+		while (num > 0) {
+			rem = (num % 10);
+			total += Math.pow(rem, digits);
+			num = num / 10;
+		}
+		if (input == total) {
+			return true;
+		} 
+		else {
+			return false;
+		}
 	}
 
 	/**
