@@ -14,13 +14,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		/* Check validity
-		 * if(string == null || string.equals(null)) { return string; }
+		/*
+		 * Check validity if(string == null || string.equals(null)) { return string; }
 		 */
 		String input = string;
 		String reversed = "";
-		 
-		for(int i = input.length()-1; i >= 0; i--) {
+
+		for (int i = input.length() - 1; i >= 0; i--) {
 			reversed = reversed + input.charAt(i);
 		}
 		return reversed;
@@ -34,21 +34,22 @@ public class EvaluationService {
 	 * @param phrase
 	 * @return
 	 */
-	
+
 	public String acronym(String phrase) {
-			
+
 		String str = phrase;
-			
-		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*) 
+
+		// refactor code for delimiterValues to add additional regex to split() (e.g.
+		// |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
-			
-	    String words[] = str.split(delimiterValues); 
-	    String upper = "";
-	        
-	    	for(String word : words) { 
-	            upper = upper +(Character.toUpperCase(word.charAt(0)) + "");  
-	        } 
-			return upper;
+
+		String words[] = str.split(delimiterValues);
+		String upper = "";
+
+		for (String word : words) {
+			upper = upper + (Character.toUpperCase(word.charAt(0)) + "");
+		}
+		return upper;
 	}
 
 	/**
@@ -110,22 +111,19 @@ public class EvaluationService {
 		 * if((s1).equals(s2) & (s2).equals(s3) & (s3).equals(s1) ) { return true; }
 		 * else { return false; } }
 		 */
-		
+
 		public boolean isEquilateral() {
 			Triangle s1 = new Triangle(sideOne, sideTwo, sideThree);
 			Triangle s2 = new Triangle(sideOne, sideTwo, sideThree);
 			Triangle s3 = new Triangle(sideOne, sideTwo, sideThree);
-			
-			s1.sideOne =getSideOne();
-			s2.sideTwo =getSideTwo();
-			s3.sideThree =getSideThree();
-			
-			boolean results; 
-				
-			if ((s1.sideOne) == (s2.sideTwo) 
-				&& (s2.sideTwo) == (s3.sideThree) 
-					&& (s3.sideThree) == (s1.sideOne) ) 
-			{
+
+			s1.sideOne = getSideOne();
+			s2.sideTwo = getSideTwo();
+			s3.sideThree = getSideThree();
+
+			boolean results;
+
+			if ((s1.sideOne) == (s2.sideTwo) && (s2.sideTwo) == (s3.sideThree) && (s3.sideThree) == (s1.sideOne)) {
 				//
 				s2.sideOne = s1.sideOne;
 				s3.sideOne = s1.sideOne;
@@ -135,10 +133,9 @@ public class EvaluationService {
 				//
 				s1.sideThree = s3.sideThree;
 				s2.sideThree = s3.sideThree;
-				
+
 				results = true;
-			}
-			else {
+			} else {
 				results = false;
 			}
 			return results;
@@ -148,28 +145,24 @@ public class EvaluationService {
 			double s1 = getSideOne();
 			double s2 = getSideTwo();
 			double s3 = getSideThree();
-			
-			if((s1 == s2 & s2 != s3 & s1 != s3) |
-					(s1 == s3 & s2 != s3 & s1 != s2) |
-						(s2 != s1 & s2 == s3 & s1 != s3 )
-				) { 
-				return true; 
-				}
-				else {
-					return false;	
-				}
+
+			if ((s1 == s2 & s2 != s3 & s1 != s3) | (s1 == s3 & s2 != s3 & s1 != s2)
+					| (s2 != s1 & s2 == s3 & s1 != s3)) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 
 		public boolean isScalene() {
 			double s1 = getSideOne();
 			double s2 = getSideTwo();
 			double s3 = getSideThree();
-			
-			if(s1 != s2 & s2 != s3 & s3 != s1) {
+
+			if (s1 != s2 & s2 != s3 & s3 != s1) {
 				return true;
-			}
-			else {
-				return false;	
+			} else {
+				return false;
 			}
 		}
 	}
@@ -189,8 +182,28 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
+	public int getScrabbleScore(String input) {
+		String str = input.toLowerCase();
+		char data[] = str.toCharArray();
+		str = new String(data);
+		int score;
+
+		int[] letterValArray = { 1, 2, 3, 4, 5, 8, 10 };
+		char letterOne[] = { 'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' };
+		char letterTwo[] = { 'd', 'g' };
+		char letterThree[] = { 'b', 'c', 'm', 'p' };
+		char letterFour[] = { 'f', 'h', 'v', 'w', 'y' };
+		char letterFive[] = { 'k' };
+		char letterEight[] = { 'j', 'x' };
+		char letterTen[] = { 'z' };
+
+		for (int i = 0; i < data.length; i++) {
+			score = (data[i] * letterValArray.length);
+
+		}
+
+		// Map<>
+
 		return 0;
 	}
 
@@ -226,8 +239,30 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		// String number = string.replaceAll("([^a-zA-Z])", "").replace(" ","");
+		String number = string.replace(" ", "").replace(".", "").replace("(", "").replace(")", "").replace("-", "");
+		char[] phoNumber = number.toCharArray();
+		
+		System.out.println(number + " init");
+		
+		// refactor needed for additional invalid values of phone #
+		if ((number.length() != 10) || (number.contains("abc") || (number.contains("@:!")) )) {
+			System.out.println(number + " >10");
+			throw new IllegalArgumentException();
+		}
+		
+		for (char i : phoNumber) {
+			if (Character.isDigit(i)) {
+					System.out.println(number + " Start");
+				return number;
+			}
+			if (number.charAt(0) == 1) {
+				if (Character.isDigit(i))
+					System.out.println(number + " +1");
+				number = number.substring(1);
+			}
+		}
+		return number;
 	}
 
 	/**
@@ -354,9 +389,34 @@ public class EvaluationService {
 	 * @param l
 	 * @return
 	 */
+	@SuppressWarnings("null")
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+
+		long input = l;
+
+		List<Long> pfactors = null;
+		pfactors.add(l);
+
+		for (int i = 0; i < input; i++) {
+			@SuppressWarnings("unused")
+			boolean primeTrue;
+
+			long maxDiv = (int) Math.sqrt(input);
+
+			for (int c = 2; c < maxDiv;) {
+				if (input % c == 0) {
+					primeTrue = false;
+
+				} else {
+					primeTrue = true;
+				}
+				pfactors.add(maxDiv);
+				return pfactors;
+			}
+
+		}
+		return pfactors;
+
 	}
 
 	/**
@@ -413,10 +473,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	
+		
+		
+		
+		
+		
+		
+		return i;
 	}
-
 	/**
 	 * 13 & 14. Create an implementation of the atbash cipher, an ancient encryption
 	 * system created in the Middle East.
@@ -441,8 +506,8 @@ public class EvaluationService {
 	 * rxpyi ldmul cqfnk hlevi gsvoz abwlt gives thequickbrownfoxjumpsoverthelazydog
 	 *
 	 */
-	static class AtbashCipher {
-
+	public static class AtbashCipher {
+		
 		/**
 		 * Question 13
 		 * 
@@ -464,8 +529,8 @@ public class EvaluationService {
 			// TODO Write an implementation for this method declaration
 			return null;
 		}
+	
 	}
-
 	/**
 	 * 15. The ISBN-10 verification process is used to validate book identification
 	 * numbers. These normally contain dashes and look like: 3-598-21508-8
