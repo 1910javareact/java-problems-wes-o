@@ -39,7 +39,6 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 
 		String str = phrase;
-
 		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
 
