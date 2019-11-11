@@ -15,13 +15,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		/*
-		 * Check validity if(string == null || string.equals(null)) { return string; }
-		 */
+		//Check validity
+		if(string == null || string.equals(null)) { 
+			return string; 
+		}
 		String input = string;
 		String reversed = "";
-
-		for (int i = input.length() - 1; i >= 0; i--) {
+		for(int i = input.length()-1; i >= 0; i--) {
 			reversed = reversed + input.charAt(i);
 		}
 		return reversed;
@@ -39,8 +39,8 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 
 		String str = phrase;
-
-		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*)
+		// refactor code for delimiterValues to add additional regex to split() (e.g.
+		// |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
 
 		String words[] = str.split(delimiterValues);
