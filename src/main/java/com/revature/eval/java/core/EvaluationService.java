@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,8 +40,7 @@ public class EvaluationService {
 
 		String str = phrase;
 
-		// refactor code for delimiterValues to add additional regex to split() (e.g.
-		// |\\^\\s*)
+		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
 
 		String words[] = str.split(delimiterValues);
@@ -274,9 +274,27 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String input = string;
+		Map<String, Integer> wordMap = new HashMap<String, Integer>();
+		String[] arr = input.split(" ");
+
+		if (arr.length == 1) {
+			// additional regex to add below this line for refactor
+			arr = input.split("\\,\n|,|;|\\*|/");
+			//arr = input.split("\\n|,|;|\\.|\\?|!|-|:|@|\\[|\\]|\\(|\\)|\\{|\\}|_|\\*|/");
+		}
+
+		for (String i : arr) {
+			if (!wordMap.containsKey(i)) {
+				wordMap.put(i, 1);
+			} else {
+				int count = wordMap.get(i);
+				wordMap.put(i, count + 1);
+			}
+		}
+		return wordMap;
 	}
 
 	/**
