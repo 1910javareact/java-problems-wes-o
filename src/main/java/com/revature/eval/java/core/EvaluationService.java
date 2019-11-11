@@ -14,12 +14,12 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		/* Check validity
-		 * if(string == null || string.equals(null)) { return string; }
-		 */
+		//Check validity
+		if(string == null || string.equals(null)) { 
+			return string; 
+		}
 		String input = string;
 		String reversed = "";
-		 
 		for(int i = input.length()-1; i >= 0; i--) {
 			reversed = reversed + input.charAt(i);
 		}
