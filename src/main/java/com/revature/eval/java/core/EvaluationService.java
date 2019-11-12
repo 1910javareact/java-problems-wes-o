@@ -1,10 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,15 +16,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		// Check validity 
+		//Check validity
 		if(string == null || string.equals(null)) { 
 			return string; 
 		}
-		
 		String input = string;
 		String reversed = "";
-
-		for (int i = input.length() - 1; i >= 0; i--) {
+		for(int i = input.length()-1; i >= 0; i--) {
 			reversed = reversed + input.charAt(i);
 		}
 		return reversed;
@@ -45,7 +40,6 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 
 		String str = phrase;
-
 		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
 
@@ -557,28 +551,27 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-//	public int calculateNthPrime(int i) {
-//		if (i < 1) {
-//			throw new IllegalArgumentException();
-//		}
-//	int n = i;
-//	int num = 1;
-//	int c = 0;
-//
-//		while (c < n) {
-//			num = num++;
-//			for (int j = 2; j <= num; j++) {
-//				if (num % j == 0) {
-//					return j;
-//				}
-//			}
-//			if (i == num) {
-//				c = c++;
-//			}
-//		}
-//	return 0;
-//	}
-	
+	public int calculateNthPrime(int i) {
+		if (i <= 2) {
+			throw new IllegalArgumentException();
+		}
+	int n = i;
+	int num = 1;
+	int c = 0;
+
+		while (c < n) {
+			num = num++;
+			for (int j = 2; j <= num; j++) {
+				if (num % j == 0) {
+					return j;
+				}
+			}
+			if (i == num) {
+				c = c++;
+			}
+		}
+	return i;
+	}
 	/*
 	 * public Integer getNthPrime(int n, int searchUpperBound) { primes = new
 	 * ArrayList<Integer>(n); primes.add(2); mayPrimes = new LinkedList<Integer>();
