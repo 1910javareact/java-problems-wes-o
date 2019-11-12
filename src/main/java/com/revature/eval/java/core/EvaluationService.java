@@ -755,13 +755,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int num, int[] set) { 
-	    	int a = num;
 	    //Set<Integer> IntegerSet = new HashSet<Integer>();	
-			a = set.length;
 	        int sum = 0; 
-	       
-	        
-	        
+		
+		for(int j = 1; j < i; j++) {
+			for(int k = 0; k < set.length; k++) {
+				if(j % set[k] == 0) {
+					sum += j;
+					k = set.length;
+				}
+			}
+		}
+		return sum;
+	}      
 	        
 	        // Hash to store all element of array  
 	        HashSet<Integer> s = new HashSet<Integer>(); 
@@ -870,8 +876,35 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int firstNumber = 0; int secondNumber = 0;
+		int output = 0;
+		String temp = "";
+		String str = string;
+		
+		String[] input = str.split(' ');
+		
+		firstNumber = Integer.valueOf(input[2]);
+		if (input.length == 5) {
+			temp += input[4].replace("?", "");
+			secondNumber = Integer.valueOf(temp);
+		}
+		else if (input.length == 6	) {
+			temp += input[5].replace("?", "");
+			secondNumber = Integer.valueOf(temp);
+		}
+		if (input[3].equals("plus")) {
+			output = firstNumber + secondNumber;
+		}		
+		else if (input[3].equals("minus")) {
+			output = firstNumber - secondNumber;
+		}
+		else if (input[3].equals("multiplied")) {
+			output = firstNumber * secondNumber;
+		}
+		else if (input[3].equals("divided")) {
+			output = firstNumber / secondNumber;
+		}
+		
+		return output;
 	}
-
 }
