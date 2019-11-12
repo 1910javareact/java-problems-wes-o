@@ -661,9 +661,49 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+	private final int SHORT_ISBN_MULTIPLIER = 11;
+	private final int SHORT_ISBN_LENGTH = 10;
+	
+	public boolean isValidIsbn(String isbn) {
+		String check = isbn.replace("-", "");
+		System.out.println(check + " before valid");
+		
+		if (check.length() > 11) {
+			return isAValidTenISBN(check);
+		}
+		else if (check.length() == SHORT_ISBN_LENGTH) {
+			return isAValidTenISBN(isbn);			
+		}
+		throw new NumberFormatException("ISBN numbers must be 10 or 13 digits.");
+	}
+
+	public boolean isAValidTenISBN(String isbn) {
+		String checkInput = isbn.replace("-", "");
+		System.out.println(checkInput + " after valid");
+		
+		int total = 0;
+
+		for (int i = 0; i < SHORT_ISBN_LENGTH; i++)
+		{
+			if (!Character.isDigit(checkInput.charAt(i))) {
+				if (i == 5 && checkInput.charAt(i) == 'K') {
+					return false;
+				}
+				if (i == 9 && checkInput.charAt(i) == 'X') {
+					total += 10;
+				}
+				if (i == 9 && checkInput.charAt(i) == 'A') {
+					return false;
+				}
+				else {
+					throw new NumberFormatException("ISBN numbers only contain numeric digits");
+				}
+			}
+			else {
+				total += Character.getNumericValue(checkInput.charAt(i)) * (SHORT_ISBN_LENGTH -i);
+			}
+		}    
+		return (total % SHORT_ISBN_MULTIPLIER == 0);
 	}
 
 	/**
