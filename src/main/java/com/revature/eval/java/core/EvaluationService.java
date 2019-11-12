@@ -654,10 +654,39 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
-	}
+//	public boolean isValidIsbn(String string) {
+//		String isbnn = string;
+//		String isbn;
+//		
+//		final int SHORT_ISBN_MULTIPLIER = 11;
+//		final int SHORT_ISBN_LENGTH = 10;
+//
+//			if (isbnn.length() == SHORT_ISBN_LENGTH) {
+//				isbn = isbnn;			
+//			}
+//			else {
+//			throw new NumberFormatException("ISBN numbers must be 10 or 13 digits.");
+//			}
+//			String checkInput = isbn;
+//			int total = 0;
+//
+//			for (int i = 0; i < SHORT_ISBN_LENGTH; i++)
+//			{
+//				if (!Character.isDigit(checkInput.charAt(i))) {
+//					if (i == 9 && checkInput.charAt(i) == 'X') {
+//						total += 10;
+//					}
+//					else {
+//						throw new NumberFormatException("ISBN numbers can only contain numeric digits");
+//					}
+//				}
+//				else {
+//					total += Character.getNumericValue(checkInput.charAt(i)) * (SHORT_ISBN_LENGTH -i);
+//				}
+//			}    
+//			return (total % SHORT_ISBN_MULTIPLIER == 0);
+//		
+//	}
 
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
