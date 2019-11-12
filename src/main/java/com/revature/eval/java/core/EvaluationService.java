@@ -1,7 +1,6 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -19,15 +18,13 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
-		// Check validity 
+		//Check validity
 		if(string == null || string.equals(null)) { 
 			return string; 
 		}
-		
 		String input = string;
 		String reversed = "";
-
-		for (int i = input.length() - 1; i >= 0; i--) {
+		for(int i = input.length()-1; i >= 0; i--) {
 			reversed = reversed + input.charAt(i);
 		}
 		return reversed;
@@ -45,7 +42,6 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 
 		String str = phrase;
-
 		// refactor code for delimiterValues to add additional regex to split() (e.g. |\\^\\s*)
 		String delimiterValues = "\\s+|,\\s*|\\.\\s*|\\-\\s*";
 
@@ -557,28 +553,28 @@ public class EvaluationService {
 	 * @param i
 	 * @return
 	 */
-//	public int calculateNthPrime(int i) {
-//		if (i < 1) {
-//			throw new IllegalArgumentException();
-//		}
-//	int n = i;
-//	int num = 1;
-//	int c = 0;
-//
-//		while (c < n) {
-//			num = num++;
-//			for (int j = 2; j <= num; j++) {
-//				if (num % j == 0) {
-//					return j;
-//				}
-//			}
-//			if (i == num) {
-//				c = c++;
-//			}
-//		}
-//	return 0;
-//	}
-	
+	public int calculateNthPrime(int i) {
+		if (i <= 2) {
+			throw new IllegalArgumentException();
+		}
+	int n = i;
+	int num = 1;
+	int c = 0;
+
+		while (c < n) {
+			num = num++;
+			for (int j = 2; j <= num; j++) {
+				if (num % j == 0) {
+					return j;
+				}
+			}
+			if (i == num) {
+				c = c++;
+			}
+		}
+	return i;
+	}
+  
 	/*
 	 * public Integer getNthPrime(int n, int searchUpperBound) { primes = new
 	 * ArrayList<Integer>(n); primes.add(2); mayPrimes = new LinkedList<Integer>();
@@ -773,14 +769,19 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int num, int[] set) { 
-	    	int a = num;
 	    //Set<Integer> IntegerSet = new HashSet<Integer>();	
-			a = set.length;
 	        int sum = 0; 
-	       
-	        
-	        
-	        
+		
+		for(int j = 1; j < i; j++) {
+			for(int k = 0; k < set.length; k++) {
+				if(j % set[k] == 0) {
+					sum += j;
+					k = set.length;
+				  }
+        }
+      }
+		return sum;
+	}       
 	        // Hash to store all element of array  
 	        HashSet<Integer> s = new HashSet<Integer>(); 
 	        for (int i = 0; i < a; i++) 
@@ -792,8 +793,7 @@ public class EvaluationService {
 	            } 
 	        } 
 	        return sum; 
-	  } 	
-			
+	 } 				
 	    
 //	    // Number of multiples 
 //	    int m = N / a; 
@@ -888,8 +888,35 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		int firstNumber = 0; int secondNumber = 0;
+		int output = 0;
+		String temp = "";
+		String str = string;
+		
+		String[] input = str.split(' ');
+		
+		firstNumber = Integer.valueOf(input[2]);
+		if (input.length == 5) {
+			temp += input[4].replace("?", "");
+			secondNumber = Integer.valueOf(temp);
+		}
+		else if (input.length == 6	) {
+			temp += input[5].replace("?", "");
+			secondNumber = Integer.valueOf(temp);
+		}
+		if (input[3].equals("plus")) {
+			output = firstNumber + secondNumber;
+		}		
+		else if (input[3].equals("minus")) {
+			output = firstNumber - secondNumber;
+		}
+		else if (input[3].equals("multiplied")) {
+			output = firstNumber * secondNumber;
+		}
+		else if (input[3].equals("divided")) {
+			output = firstNumber / secondNumber;
+		}
+		
+		return output;
 	}
-
 }
