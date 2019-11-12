@@ -190,27 +190,63 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String input) {
 		String str = input.toLowerCase();
-		char data[] = str.toCharArray();
-		str = new String(data);
-		int score;
-
-		int[] letterValArray = { 1, 2, 3, 4, 5, 8, 10 };
-		char letterOne[] = { 'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' };
-		char letterTwo[] = { 'd', 'g' };
-		char letterThree[] = { 'b', 'c', 'm', 'p' };
-		char letterFour[] = { 'f', 'h', 'v', 'w', 'y' };
-		char letterFive[] = { 'k' };
-		char letterEight[] = { 'j', 'x' };
-		char letterTen[] = { 'z' };
-
-		for (int i = 0; i < data.length; i++) {
-			score = (data[i] * letterValArray.length);
-
-		}
-
-		// Map<>
-
-		return 0;
+		int score = 0;
+		/*
+		 * int[] letterValArray = { 1, 2, 3, 4, 5, 8, 10 }; char letterOne[] = {'a',
+		 * 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' }; char letterTwo[] = { 'd', 'g'
+		 * }; char letterThree[] = { 'b', 'c', 'm', 'p' }; char letterFour[] = { 'f',
+		 * 'h', 'v', 'w', 'y' }; char letterFive[] = { 'k' }; char letterEight[] = {
+		 * 'j', 'x' }; char letterTen[] = { 'z' };
+		 * 
+		 */		
+		for (int i = 0; i < str.length(); i++) {
+				
+			char l = str.toLowerCase().charAt(i);
+			switch(l) {
+				
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'l':
+			case 'n':
+			case 'r':
+			case 's':
+			case 't':
+				score += 1;
+					break;
+			case 'd':
+			case 'g':
+				score += 2;
+					break;
+			case 'b':
+			case 'c':
+			case 'm':
+			case 'p':
+				score += 3;
+					break;
+			case 'f':
+			case 'h':
+			case 'v':
+			case 'w':
+			case 'y':
+				score += 4;
+					break;
+			case 'k':
+				score += 5;
+					break;
+			case 'j':
+			case 'x':
+				score += 8;
+					break;
+			case 'q':
+			case 'z':
+				score += 10;
+					break;
+				}
+			}		
+		return score;
 	}
 
 	/**
