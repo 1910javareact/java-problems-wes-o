@@ -755,6 +755,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int num, int[] set) { 
+
 	    //Set<Integer> IntegerSet = new HashSet<Integer>();	
 	        int sum = 0; 
 		
@@ -767,8 +768,7 @@ public class EvaluationService {
 			}
 		}
 		return sum;
-	}      
-	        
+	}       
 	        // Hash to store all element of array  
 	        HashSet<Integer> s = new HashSet<Integer>(); 
 	        for (int i = 0; i < a; i++) 
@@ -780,8 +780,7 @@ public class EvaluationService {
 	            } 
 	        } 
 	        return sum; 
-	  } 	
-			
+	  } 				
 	    
 //	    // Number of multiples 
 //	    int m = N / a; 
