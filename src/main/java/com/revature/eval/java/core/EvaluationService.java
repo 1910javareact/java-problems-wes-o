@@ -2,6 +2,8 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -572,6 +574,7 @@ public class EvaluationService {
 		}
 	return i;
 	}
+  
 	/*
 	 * public Integer getNthPrime(int n, int searchUpperBound) { primes = new
 	 * ArrayList<Integer>(n); primes.add(2); mayPrimes = new LinkedList<Integer>();
@@ -654,39 +657,50 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-//	public boolean isValidIsbn(String string) {
-//		String isbnn = string;
-//		String isbn;
-//		
-//		final int SHORT_ISBN_MULTIPLIER = 11;
-//		final int SHORT_ISBN_LENGTH = 10;
-//
-//			if (isbnn.length() == SHORT_ISBN_LENGTH) {
-//				isbn = isbnn;			
-//			}
-//			else {
-//			throw new NumberFormatException("ISBN numbers must be 10 or 13 digits.");
-//			}
-//			String checkInput = isbn;
-//			int total = 0;
-//
-//			for (int i = 0; i < SHORT_ISBN_LENGTH; i++)
-//			{
-//				if (!Character.isDigit(checkInput.charAt(i))) {
-//					if (i == 9 && checkInput.charAt(i) == 'X') {
-//						total += 10;
-//					}
-//					else {
-//						throw new NumberFormatException("ISBN numbers can only contain numeric digits");
-//					}
-//				}
-//				else {
-//					total += Character.getNumericValue(checkInput.charAt(i)) * (SHORT_ISBN_LENGTH -i);
-//				}
-//			}    
-//			return (total % SHORT_ISBN_MULTIPLIER == 0);
-//		
-//	}
+	private final int SHORT_ISBN_MULTIPLIER = 11;
+	private final int SHORT_ISBN_LENGTH = 10;
+	
+	public boolean isValidIsbn(String isbn) {
+		String check = isbn.replace("-", "");
+		System.out.println(check + " before valid");
+		
+		if (check.length() > 11) {
+			return isAValidTenISBN(check);
+		}
+		else if (check.length() == SHORT_ISBN_LENGTH) {
+			return isAValidTenISBN(isbn);			
+		}
+		throw new NumberFormatException("ISBN numbers must be 10 or 13 digits.");
+	}
+
+	public boolean isAValidTenISBN(String isbn) {
+		String checkInput = isbn.replace("-", "");
+		System.out.println(checkInput + " after valid");
+		
+		int total = 0;
+
+		for (int i = 0; i < SHORT_ISBN_LENGTH; i++)
+		{
+			if (!Character.isDigit(checkInput.charAt(i))) {
+				if (i == 5 && checkInput.charAt(i) == 'K') {
+					return false;
+				}
+				if (i == 9 && checkInput.charAt(i) == 'X') {
+					total += 10;
+				}
+				if (i == 9 && checkInput.charAt(i) == 'A') {
+					return false;
+				}
+				else {
+					throw new NumberFormatException("ISBN numbers only contain numeric digits");
+				}
+			}
+			else {
+				total += Character.getNumericValue(checkInput.charAt(i)) * (SHORT_ISBN_LENGTH -i);
+			}
+		}    
+		return (total % SHORT_ISBN_MULTIPLIER == 0);
+	}
 
 	/**
 	 * 16. Determine if a sentence is a pangram. A pangram (Greek: παν γράμμα, pan
@@ -755,7 +769,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int num, int[] set) { 
-
 	    //Set<Integer> IntegerSet = new HashSet<Integer>();	
 	        int sum = 0; 
 		
@@ -764,9 +777,9 @@ public class EvaluationService {
 				if(j % set[k] == 0) {
 					sum += j;
 					k = set.length;
-				}
-			}
-		}
+				  }
+        }
+      }
 		return sum;
 	}       
 	        // Hash to store all element of array  
@@ -780,7 +793,7 @@ public class EvaluationService {
 	            } 
 	        } 
 	        return sum; 
-	  } 				
+	 } 				
 	    
 //	    // Number of multiples 
 //	    int m = N / a; 
