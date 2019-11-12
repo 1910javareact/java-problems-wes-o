@@ -4,6 +4,7 @@ import java.time.temporal.Temporal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
 
@@ -183,27 +184,63 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String input) {
 		String str = input.toLowerCase();
-		char data[] = str.toCharArray();
-		str = new String(data);
-		int score;
-
-		int[] letterValArray = { 1, 2, 3, 4, 5, 8, 10 };
-		char letterOne[] = { 'a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' };
-		char letterTwo[] = { 'd', 'g' };
-		char letterThree[] = { 'b', 'c', 'm', 'p' };
-		char letterFour[] = { 'f', 'h', 'v', 'w', 'y' };
-		char letterFive[] = { 'k' };
-		char letterEight[] = { 'j', 'x' };
-		char letterTen[] = { 'z' };
-
-		for (int i = 0; i < data.length; i++) {
-			score = (data[i] * letterValArray.length);
-
-		}
-
-		// Map<>
-
-		return 0;
+		int score = 0;
+		/*
+		 * int[] letterValArray = { 1, 2, 3, 4, 5, 8, 10 }; char letterOne[] = {'a',
+		 * 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' }; char letterTwo[] = { 'd', 'g'
+		 * }; char letterThree[] = { 'b', 'c', 'm', 'p' }; char letterFour[] = { 'f',
+		 * 'h', 'v', 'w', 'y' }; char letterFive[] = { 'k' }; char letterEight[] = {
+		 * 'j', 'x' }; char letterTen[] = { 'z' };
+		 * 
+		 */		
+		for (int i = 0; i < str.length(); i++) {
+				
+			char l = str.toLowerCase().charAt(i);
+			switch(l) {
+				
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+			case 'l':
+			case 'n':
+			case 'r':
+			case 's':
+			case 't':
+				score += 1;
+					break;
+			case 'd':
+			case 'g':
+				score += 2;
+					break;
+			case 'b':
+			case 'c':
+			case 'm':
+			case 'p':
+				score += 3;
+					break;
+			case 'f':
+			case 'h':
+			case 'v':
+			case 'w':
+			case 'y':
+				score += 4;
+					break;
+			case 'k':
+				score += 5;
+					break;
+			case 'j':
+			case 'x':
+				score += 8;
+					break;
+			case 'q':
+			case 'z':
+				score += 10;
+					break;
+				}
+			}		
+		return score;
 	}
 
 	/**
@@ -341,8 +378,8 @@ public class EvaluationService {
 			@SuppressWarnings("unchecked")
 			int last = ((List<T>) t).size();
 				for (int i = middle; i < last; i += i/2) {
-			   if( ( middle == (int) t));
-			}
+					if( ( middle == (int) t));
+				}
 			return middle;
 		}
 
@@ -401,24 +438,24 @@ public class EvaluationService {
 	public boolean isArmstrongNumber(int input) {
 		int num = input;
 		int rem;
-		int digits = 0, total = 0;
-		//int total = 0;
+		int digits = 0;
+		int total = 0;
 		while (num > 0) { 
 			digits++;
 			num = num / 10;
 		}
 		num = input; // reset number
-		while (num > 0) {
-			rem = (num % 10);
-			total += Math.pow(rem, digits);
-			num = num / 10;
-		}
-		if (input == total) {
-			return true;
-		} 
-		else {
-			return false;
-		}
+			while (num > 0) {
+				rem = (num % 10);
+				total += Math.pow(rem, digits);
+				num = num / 10;
+			}
+			if (input == total) {
+				return true;
+			} 
+			else {
+				return false;
+			}
 	}
 
 	/**
@@ -433,32 +470,24 @@ public class EvaluationService {
 	 */
 	@SuppressWarnings("null")
 	public List<Long> calculatePrimeFactorsOf(long l) {
-
+		List<Long> factors = new ArrayList();
 		long input = l;
-
-		List<Long> pfactors = null;
-		pfactors.add(l);
-
-		for (int i = 0; i < input; i++) {
-			@SuppressWarnings("unused")
-			boolean primeTrue;
-
-			long maxDiv = (int) Math.sqrt(input);
-
-			for (int c = 2; c < maxDiv;) {
-				if (input % c == 0) {
-					primeTrue = false;
-
-				} else {
-					primeTrue = true;
-				}
-				pfactors.add(maxDiv);
-				return pfactors;
-			}
-
+		
+		while (input % 2 == 0) {
+			factors.add(2L);
+				input /= 2;
 		}
-		return pfactors;
-
+		for (int i = 3; i <= Math.sqrt(input); i += 2) {
+			while (input % i == 0) {
+				factors.add(3L);
+				input /= i;
+			}
+		}
+		if (input > 2) {
+			factors.add(input);
+		}
+		 System.out.println(factors);
+		return factors;
 	}
 
 	/**
@@ -496,8 +525,16 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String temp = "";
+			for (int i = 0; i < string.length(); i++) {
+				char c = string.charAt(i);
+					if (c >= 'A' && c <= 'Z')
+						c += key;
+					else if (c >= 'a' && c <= 'z')
+						c += key;
+						temp += c;
+			}
+			return temp;
 		}
 
 	}
@@ -535,7 +572,6 @@ public class EvaluationService {
 		}
 	return i;
 	}
-	
 	/*
 	 * public Integer getNthPrime(int n, int searchUpperBound) { primes = new
 	 * ArrayList<Integer>(n); primes.add(2); mayPrimes = new LinkedList<Integer>();
@@ -637,8 +673,30 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean[] table = new boolean[26];
+		int index = 0;
+		String input = string;
+		boolean pangram;
+		
+		for (int i = 0; i < input.length(); i++) {
+			if ('A' <= input.charAt(i) && input.charAt(i) <= 'Z') {
+				index = input.charAt(i) - 'A';
+			}	
+			else if ('a' <= input.charAt(i) && input.charAt(i) <= 'z') {
+				index = input.charAt(i) - 'a';
+			}
+			table[index] = true;
+		}
+		for (int i = 0; i <= 25; i++) {
+			if (table[i] == false) {
+				pangram = false;
+				return (pangram);
+			}
+			else {
+			pangram = true;
+			}
+		}	
+		return (true);
 	}
 
 	/**
@@ -667,10 +725,37 @@ public class EvaluationService {
 	 * @param set
 	 * @return
 	 */
-	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
-	}
+	public int getSumOfMultiples(int num, int[] set) { 
+	    	int a = num;
+	    //Set<Integer> IntegerSet = new HashSet<Integer>();	
+			a = set.length;
+	        int sum = 0; 
+	       
+	        
+	        
+	        
+	        // Hash to store all element of array  
+	        HashSet<Integer> s = new HashSet<Integer>(); 
+	        for (int i = 0; i < a; i++) 
+	        { 
+	            if (!s.contains(set[i])) 
+	            { 
+	                sum += set[i]; 
+	                s.add(set[i]); 
+	            } 
+	        } 
+	        return sum; 
+	  } 	
+			
+	    
+//	    // Number of multiples 
+//	    int m = N / a; 
+//	    // sum of first m natural numbers 
+//	    int sum = m * (m + 1) / 2; 
+//	    // sum of multiples 
+//	    int ans = a * sum;
+//		}
+	
 
 	/**
 	 * 19. Given a number determine whether or not it is valid per the Luhn formula.
@@ -708,10 +793,25 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
-	}
+	
+    public boolean isLuhnValid(String string)
+    {
+		int sum = 0;
+		boolean alternate = false;
+		for (int i = string.length() - 1; i >= 0; i--) {
+			int n = Integer.parseInt(string.substring(i, i + 1));
+			if (alternate) {
+				n *= 2;
+				if (n > 9) {
+					n = (n % 10) + 1;
+				}
+			}
+			sum += n;
+			alternate = !alternate;
+		}
+		return (sum % 10 == 0);
+    }
+	
 
 	/**
 	 * 20. Parse and evaluate simple math word problems returning the answer as an
